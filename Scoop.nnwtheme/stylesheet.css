@@ -1,0 +1,224 @@
+/* -------- Tokens -------- */
+
+:root {
+  --rem-size: 1rem;
+  --fluid-xs: clamp(
+    calc(0.67 * var(--rem-size)),
+    calc(calc(0.7 * var(--rem-size)) + -0.03vw),
+    calc(0.69 * var(--rem-size))
+  );
+  --fluid-s: clamp(
+    calc(0.83 * var(--rem-size)),
+    calc(calc(0.8 * var(--rem-size)) + 0.17vw),
+    calc(1 * var(--rem-size))
+  );
+  --fluid-m: clamp(
+    calc(1 * var(--rem-size)),
+    calc(calc(0.9 * var(--rem-size)) + 0.5vw),
+    calc(1.5 * var(--rem-size))
+  );
+  --fluid-l: clamp(
+    calc(1.2 * var(--rem-size)),
+    calc(calc(0.99 * var(--rem-size)) + 1.05vw),
+    calc(2.25 * var(--rem-size))
+  );
+
+  --background-color: #fff;
+  --content-color: #161616;
+  --deemphasis-color: #606060;
+  --interaction-color: #0037ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #161616;
+    --content-color: #eeeeee;
+    --deemphasis-color: #7c7c7c;
+    --interaction-color: #78a3ff;
+  }
+}
+
+/* iOS Specific */
+@supports (-webkit-touch-callout: none) {
+  :root {
+    --rem-size: [[font-size]]px;
+  }
+}
+
+/* -------- Globals / Resets -------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--content-color);
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  max-width: 60ch;
+  margin: auto;
+  padding: var(--fluid-l);
+  font-family: system-ui, sans-serif;
+  font-size: var(--fluid-m);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.3;
+}
+
+img,
+picture,
+figure,
+video,
+object,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+.stack > * + *,
+p {
+  margin-block-start: var(--fluid-l);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+a {
+  text-decoration: none;
+  color: var(--interaction-color);
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------- UI & Chrome -------- */
+
+.nnw-jpm-feed-info {
+  position: sticky;
+  top: 0;
+  padding: var(--fluid-s) var(--fluid-l);
+  margin-inline: calc(-1 * var(--fluid-l));
+  display: flex;
+  align-items: center;
+  gap: var(--fluid-s);
+  font-size: var(--fluid-s);
+  background-color: color-mix(in oklch, var(--background-color), #0000 16%);
+  backdrop-filter: blur(var(--fluid-xs));
+  -webkit-backdrop-filter: blur(var(--fluid-xs));
+}
+
+.nnw-jpm-feed-img {
+  width: var(--fluid-l);
+  height: var(--fluid-l);
+  border-radius: 2px;
+  filter: drop-shadow(0 2px 4px #0002);
+}
+
+.nnw-jpm-title a,
+.nnw-jpm-feed-info a {
+  color: var(--content-color);
+}
+
+.nnw-jpm-meta {
+  color: var(--deemphasis-color);
+  font-size: var(--fluid-s);
+}
+
+.nnw-jpm-external {
+  color: var(--deemphasis-color);
+  font-size: var(--fluid-s);
+  background-color: #8881;
+  padding: var(--fluid-xs) var(--fluid-xs);
+  margin-inline: calc(-1 * var(--fluid-xs));
+  border-radius: var(--fluid-xs);
+}
+
+/* -------- Body Content -------- */
+
+.nnw-jpm-body img,
+.nnw-jpm-body video,
+.nnw-jpm-body iframe,
+.nnw-jpm-body object,
+.nnw-jpm-body embed {
+  margin-block-start: var(--fluid-s);
+}
+
+.nnw-jpm-body figcaption {
+  font-size: var(--fluid-s);
+  color: var(--deemphasis-color);
+  font-style: italic;
+}
+
+.nnw-jpm-body blockquote {
+  border-inline-start: 4px solid var(--deemphasis-color);
+  padding-inline-start: var(--fluid-m);
+}
+
+.nnw-jpm-body pre {
+  border: 1px solid var(--deemphasis-color);
+  border-radius: 2px;
+  padding-inline-start: var(--fluid-m);
+  padding-block: var(--fluid-xs);
+  line-height: 1.25;
+  overflow-x: scroll;
+}
+
+/* -------- NNW UI -------- */
+
+.systemMessage {
+  color: var(--deemphasis-color);
+  font-size: var(--fluid-s);
+  margin: auto;
+  width: max-content;
+  font-weight: normal;
+}

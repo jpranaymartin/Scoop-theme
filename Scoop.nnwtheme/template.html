@@ -1,0 +1,44 @@
+<main class="nnw-jpm stack">
+  <header class="nnw-jpm-feed-info">
+    <img class="nnw-jpm-feed-img" src="[[avatar_src]]" />
+    <a class="nnw-jpm-feed-link" href="[[feed_link]]">[[feed_link_title]]</a>
+  </header>
+
+  <article class="nnw-jpm-article stack">
+    <div class="nnw-jpm-external">
+      <span class="nnw-jpm-external-label">[[external_link_label]]</span>
+      <a class="nnw-jpm-external-link" href="[[external_link]]">
+        [[external_link_stripped]]
+      </a>
+    </div>
+
+    <h1 class="nnw-jpm-title">
+      <a href="[[preferred_link]]">[[title]]</a>
+    </h1>
+
+    <div class="nnw-jpm-meta">
+      <span class="nnw-jpm-byline">By [[byline]], </span>
+      <span class="nnw-jpm-datetime [[dateline_style]]">
+        <!-- [date/time/datetime]_[long/medium/short]-->
+        [[datetime_medium]]
+      </span>
+    </div>
+
+    <div class="nnw-jpm-body [[text_size_class]] stack">[[body]]</div>
+  </article>
+</main>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    if ("[[byline]]".trim() === "") {
+      document.querySelector(".nnw-jpm-byline").style.display = "none";
+    }
+    if (
+      "[[external_link]]".trim() === "" ||
+      "[[external_link_label]]".trim() === "" ||
+      "[[external_link_stripped]]".trim() === ""
+    ) {
+      document.querySelector(".nnw-jpm-external").style.display = "none";
+    }
+  });
+</script>
